@@ -26,6 +26,29 @@
 - Thread-safe implementation uses double-checked locking to avoid performance issues.
 - Can be broken by reflection or serialization, so need to handle those cases.
 
+**Staff/PE Interview Questions:**
+- How would you implement a thread-safe singleton in a distributed system with multiple JVMs?
+- What are the pitfalls of using Singleton with dependency injection frameworks like Spring?
+- How can you break a singleton and how do you prevent it?
+- When would you prefer enum-based singleton over class-based?
+
+**Common Mistakes:**
+- Forgetting thread-safety in multi-threaded environments
+- Not handling serialization/deserialization properly
+- Using singleton for global state management instead of proper dependency injection
+- Making the singleton constructor public by mistake
+
+**Real-world Usage:**
+- Database connection pools (HikariCP)
+- Logging frameworks (Log4j, SLF4J)
+- Configuration managers (Spring's @Configuration)
+- Cache managers (Ehcache)
+
+**Pattern Combinations:**
+- Factory Method + Singleton: Singleton factory for object creation
+- Observer + Singleton: Singleton subject with multiple observers
+- Command + Singleton: Singleton command registry
+
 ## Factory Method
 
 **Pattern Name and Intent:** Defines an interface for creating an object, but lets subclasses decide which class to instantiate.
@@ -54,6 +77,29 @@
 - Useful for frameworks where client code shouldn't know concrete classes.
 - Can be combined with other patterns like Singleton for factories.
 
+**Staff/PE Interview Questions:**
+- How does Factory Method differ from Abstract Factory?
+- How would you implement a factory that supports dynamic plugin loading?
+- What are the benefits of enum-based factories over string-based?
+- How do you handle factory method in inheritance hierarchies?
+
+**Common Mistakes:**
+- Using string-based factory methods without validation
+- Not considering thread-safety in factory registries
+- Making factories too complex with too many responsibilities
+- Forgetting to handle unknown types gracefully
+
+**Real-world Usage:**
+- JDBC DriverManager.getConnection()
+- Java's Calendar.getInstance()
+- Spring's BeanFactory
+- SLF4J LoggerFactory
+
+**Pattern Combinations:**
+- Factory Method + Singleton: Singleton factory instance
+- Factory Method + Builder: Factory creates builders
+- Factory Method + Prototype: Factory clones prototypes
+
 ## Builder
 
 **Pattern Name and Intent:** Separates the construction of a complex object from its representation, allowing the same construction process to create different representations.
@@ -80,6 +126,29 @@
 - Builder pattern helps construct complex objects step by step, improving readability.
 - Useful for immutable objects or when there are many optional parameters.
 - Fluent interface makes the code more readable and less error-prone.
+
+**Staff/PE Interview Questions:**
+- How does Builder pattern handle validation of complex objects?
+- What's the difference between Builder and Factory patterns?
+- How would you implement a fluent builder API?
+- When should you use inner static builder classes?
+
+**Common Mistakes:**
+- Not validating parameters in builder methods
+- Making builders mutable after build()
+- Forgetting to make the product class immutable
+- Overusing builder for simple objects
+
+**Real-world Usage:**
+- Java's StringBuilder
+- HTTP client libraries (OkHttp Request.Builder)
+- JSON builders (Jackson ObjectMapper)
+- SQL query builders (JOOQ)
+
+**Pattern Combinations:**
+- Builder + Factory: Factory creates builders
+- Builder + Singleton: Singleton builder instances
+- Builder + Prototype: Builder clones and modifies prototypes
 
 ## Prototype
 
@@ -108,6 +177,29 @@
 - Requires implementing Cloneable and handling deep vs shallow copy.
 - Good for scenarios where object initialization is costly.
 
+**Staff/PE Interview Questions:**
+- How do you decide between shallow and deep cloning?
+- How would you implement prototype registry for performance?
+- What are the issues with cloning and how to solve them?
+- How does Prototype pattern work with serialization?
+
+**Common Mistakes:**
+- Not implementing Cloneable properly
+- Forgetting deep clone for mutable objects
+- Not handling circular references in deep cloning
+- Using clone() for complex object graphs
+
+**Real-world Usage:**
+- Java's Object.clone()
+- Prototype-based JavaScript objects
+- Game object pooling (Unity's Instantiate)
+- Document cloning in office suites
+
+**Pattern Combinations:**
+- Prototype + Factory: Factory uses prototypes
+- Prototype + Singleton: Singleton prototype registry
+- Prototype + Builder: Builder modifies cloned prototypes
+
 ## Abstract Factory
 
 **Pattern Name and Intent:** Provides an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -135,3 +227,26 @@
 - Abstract Factory creates families of related objects, ensuring consistency.
 - Useful for cross-platform UIs or themes.
 - Can be extended with new families without changing client code.
+
+**Staff/PE Interview Questions:**
+- How does Abstract Factory scale when you have many product families?
+- What's the difference between Abstract Factory and Factory Method?
+- How would you implement Abstract Factory for plugin architectures?
+- When would you choose Abstract Factory over dependency injection?
+
+**Common Mistakes:**
+- Adding new products requires changing all factories
+- Not clearly defining product family boundaries
+- Making factories too large and complex
+- Forgetting to implement all product creation methods
+
+**Real-world Usage:**
+- Java's AWT/Swing look and feel
+- Cross-platform UI toolkits (Qt, GTK)
+- Database abstraction layers (JDBC)
+- Game development engines (Unity's factory systems)
+
+**Pattern Combinations:**
+- Abstract Factory + Singleton: Singleton factory instances
+- Abstract Factory + Builder: Factory creates builders for complex products
+- Abstract Factory + Prototype: Factory clones product families

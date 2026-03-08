@@ -168,6 +168,29 @@
 - Allows both to evolve independently.
 - Useful for cross-platform development.
 
+**Staff/PE Interview Questions:**
+- How does Bridge pattern differ from Adapter pattern?
+- How would you implement Bridge for cross-platform GUI development?
+- What are the benefits of separating abstraction from implementation?
+- How does Bridge pattern support the Open/Closed Principle?
+
+**Common Mistakes:**
+- Confusing Bridge with Adapter
+- Not clearly separating abstraction from implementation
+- Making implementations depend on abstractions
+- Overusing Bridge for simple cases
+
+**Real-world Usage:**
+- Java's JDBC drivers (DriverManager abstraction, vendor implementations)
+- GUI toolkits (Swing/AWT abstractions, platform implementations)
+- Device drivers (hardware abstraction layer)
+- Plugin architectures
+
+**Pattern Combinations:**
+- Bridge + Abstract Factory: Factory creates bridged components
+- Bridge + Builder: Builder constructs bridged objects
+- Bridge + Strategy: Implementation varies by strategy
+
 ## Flyweight
 
 **Pattern Name and Intent:** Uses sharing to support large numbers of fine-grained objects efficiently.
@@ -196,3 +219,26 @@
 - Flyweight reduces memory usage by sharing common state.
 - Distinguishes intrinsic (shared) and extrinsic (unique) state.
 - Useful for games or text editors with many similar objects.
+
+**Staff/PE Interview Questions:**
+- How do you identify intrinsic vs extrinsic state?
+- How would you scale Flyweight for distributed systems?
+- What are the memory trade-offs of Flyweight pattern?
+- How does Flyweight relate to object pooling?
+
+**Common Mistakes:**
+- Not separating intrinsic from extrinsic state properly
+- Making flyweights mutable
+- Forgetting thread-safety in shared state
+- Over-optimizing when objects aren't numerous enough
+
+**Real-world Usage:**
+- Java's String interning
+- Game engines (Unity's object pooling)
+- Text editors (character formatting)
+- GUI components (shared icons/images)
+
+**Pattern Combinations:**
+- Flyweight + Factory: Factory manages flyweight instances
+- Flyweight + Composite: Composite shares flyweight leaves
+- Flyweight + Strategy: Different strategies for different flyweights

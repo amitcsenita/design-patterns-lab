@@ -166,6 +166,29 @@
 - Useful for event handling or middleware.
 - Allows dynamic addition/removal of handlers.
 
+**Staff/PE Interview Questions:**
+- How would you implement Chain of Responsibility for HTTP request processing?
+- What are the performance implications of long chains?
+- How do you handle cases where no handler processes the request?
+- When would you use Chain vs Decorator pattern?
+
+**Common Mistakes:**
+- Making chains too long
+- Not handling unprocessed requests
+- Breaking the chain when handlers have side effects
+- Making handlers stateful
+
+**Real-world Usage:**
+- Java's Exception handling chain
+- Servlet filters in web frameworks
+- Event handling in GUI frameworks
+- Middleware in Express.js
+
+**Pattern Combinations:**
+- Chain of Responsibility + Command: Commands passed along chain
+- Chain of Responsibility + Composite: Composite handlers
+- Chain of Responsibility + Observer: Handlers notify observers
+
 ## Mediator
 
 **Pattern Name and Intent:** Defines an object that encapsulates how a set of objects interact, promoting loose coupling by keeping objects from referring to each other explicitly.
@@ -193,6 +216,29 @@
 - Mediator reduces dependencies between communicating objects.
 - Useful for GUI components or chat systems.
 - Can simplify maintenance but may centralize too much logic.
+
+**Staff/PE Interview Questions:**
+- How does Mediator differ from Observer pattern?
+- How would you implement Mediator for a chat application with 1M users?
+- What are the drawbacks of centralized communication?
+- When should you prefer Mediator over direct communication?
+
+**Common Mistakes:**
+- Making mediator too complex (God object)
+- Not clearly defining communication protocols
+- Forgetting to update mediator when adding new colleagues
+- Tight coupling between mediator and colleagues
+
+**Real-world Usage:**
+- Air traffic control systems
+- Chat applications (mediator manages user communications)
+- GUI dialog boxes (widgets communicate through dialog)
+- Workflow engines
+
+**Pattern Combinations:**
+- Mediator + Observer: Mediator notifies observers of state changes
+- Mediator + Command: Commands sent through mediator
+- Mediator + State: Mediator changes based on system state
 
 ## Memento
 
@@ -222,6 +268,29 @@
 - Useful for undo mechanisms or checkpoints.
 - Caretaker manages mementos without accessing state.
 
+**Staff/PE Interview Questions:**
+- How would you implement undo/redo with Memento in a collaborative editor?
+- What are the security implications of Memento pattern?
+- How do you handle large state objects in Memento?
+- When would you choose Memento over Command for undo?
+
+**Common Mistakes:**
+- Storing too much state in mementos
+- Not implementing proper encapsulation in memento
+- Forgetting to handle memento lifecycle
+- Making mementos mutable
+
+**Real-world Usage:**
+- Text editors (undo/redo functionality)
+- Game save systems
+- Database transaction rollbacks
+- Version control systems
+
+**Pattern Combinations:**
+- Memento + Command: Commands create mementos for undo
+- Memento + Iterator: Iterate through memento history
+- Memento + Prototype: Clone state for mementos
+
 ## State
 
 **Pattern Name and Intent:** Allows an object to alter its behavior when its internal state changes, appearing as if the object changed its class.
@@ -249,6 +318,29 @@
 - State encapsulates state-specific behavior.
 - Useful for state machines or UI states.
 - Each state class handles transitions.
+
+**Staff/PE Interview Questions:**
+- How would you implement State pattern for TCP connection states?
+- What are the benefits of State over large switch statements?
+- How do you handle state transitions with complex logic?
+- When should you use State vs Strategy pattern?
+
+**Common Mistakes:**
+- Making states aware of each other
+- Not handling invalid state transitions
+- Putting too much logic in state classes
+- Forgetting to update context references
+
+**Real-world Usage:**
+- TCP state machine
+- Vending machines
+- Order processing workflows
+- Game character states (idle, walking, attacking)
+
+**Pattern Combinations:**
+- State + Singleton: Singleton state instances
+- State + Flyweight: Shared state objects
+- State + Mediator: States communicate through mediator
 
 ## Visitor
 
@@ -279,6 +371,29 @@
 - Useful for compilers or object structures with varying operations.
 - Double dispatch: visitor and element determine behavior.
 
+**Staff/PE Interview Questions:**
+- How does Visitor implement double dispatch?
+- How would you add new operations to an existing class hierarchy?
+- What are the limitations of Visitor pattern?
+- When would you choose Visitor over method overloading?
+
+**Common Mistakes:**
+- Modifying element classes to accept visitors
+- Making visitors too specific to element types
+- Not handling new element types properly
+- Creating circular dependencies
+
+**Real-world Usage:**
+- Compiler AST traversal
+- XML/HTML document processing
+- Object serialization frameworks
+- Report generation from object structures
+
+**Pattern Combinations:**
+- Visitor + Composite: Traverse composite structures
+- Visitor + Interpreter: Evaluate expressions
+- Visitor + Iterator: Visit elements during iteration
+
 ## Interpreter
 
 **Pattern Name and Intent:** Given a language, defines a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
@@ -306,3 +421,26 @@
 - Interpreter parses and evaluates language grammars.
 - Useful for DSLs or expression evaluators.
 - Can be combined with Composite for expression trees.
+
+**Staff/PE Interview Questions:**
+- How would you implement a SQL parser using Interpreter?
+- What are the performance issues with Interpreter pattern?
+- How do you handle operator precedence in Interpreter?
+- When should you use Interpreter vs parser generators?
+
+**Common Mistakes:**
+- Creating too many classes for grammar rules
+- Not handling parsing errors properly
+- Making the grammar too complex
+- Forgetting to validate input
+
+**Real-world Usage:**
+- Regular expression engines
+- Mathematical expression evaluators
+- Configuration file parsers
+- Simple scripting languages
+
+**Pattern Combinations:**
+- Interpreter + Composite: Expression trees
+- Interpreter + Visitor: Evaluate expressions
+- Interpreter + Flyweight: Share terminal symbols
