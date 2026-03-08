@@ -137,3 +137,172 @@
 - Template Method uses inheritance to define algorithm structure.
 - Useful for frameworks where steps are fixed but implementations vary.
 - Promotes code reuse and consistency.
+
+## Chain of Responsibility
+
+**Pattern Name and Intent:** Allows passing requests along a chain of handlers, where each handler decides either to process the request or to pass it to the next handler in the chain.
+
+**Real-world Analogy:** Like customer support levels - if level 1 can't handle, it escalates to level 2.
+
+**When to USE this pattern:**
+- When more than one object may handle a request, and the handler isn't known a priori.
+- When you want to issue a request to one of several objects without specifying the receiver explicitly.
+- To decouple senders and receivers.
+
+**When NOT to use it:**
+- When the chain is too long and performance is critical.
+- When handlers are not clearly ordered.
+
+**Code Walkthrough:**
+- `Handler`: Abstract class with next, handleRequest().
+- `SupportTicket`: Class with level.
+- `LevelOneSupport`, `LevelTwoSupport`, `LevelThreeSupport`: Handle based on level, pass to next if needed.
+- `Demo`: Creates chain, handles tickets of different levels.
+
+**How to Run:** `java -cp behavioral/src/main/java com.example.behavioral.chainofresponsibility.Demo`
+
+**Interview Talking Points:**
+- Chain of Responsibility creates a processing pipeline.
+- Useful for event handling or middleware.
+- Allows dynamic addition/removal of handlers.
+
+## Mediator
+
+**Pattern Name and Intent:** Defines an object that encapsulates how a set of objects interact, promoting loose coupling by keeping objects from referring to each other explicitly.
+
+**Real-world Analogy:** Like an air traffic controller - manages communication between planes without them talking directly.
+
+**When to USE this pattern:**
+- When objects communicate in complex but well-defined ways.
+- When reusing objects is difficult because they refer to and communicate with many other objects.
+- To centralize complex communications and control logic.
+
+**When NOT to use it:**
+- When objects have simple interactions.
+- When the mediator becomes too complex (God object).
+
+**Code Walkthrough:**
+- `Mediator`: Interface with sendMessage().
+- `ChatRoom`: Implements Mediator, broadcasts messages.
+- `User`: Has mediator, send() and receive().
+- `Demo`: Creates chatroom, adds users, sends messages.
+
+**How to Run:** `java -cp behavioral/src/main/java com.example.behavioral.mediator.Demo`
+
+**Interview Talking Points:**
+- Mediator reduces dependencies between communicating objects.
+- Useful for GUI components or chat systems.
+- Can simplify maintenance but may centralize too much logic.
+
+## Memento
+
+**Pattern Name and Intent:** Without violating encapsulation, captures and externalizes an object's internal state so that the object can be restored to this state later.
+
+**Real-world Analogy:** Like undo in a text editor - saves state to allow restoration.
+
+**When to USE this pattern:**
+- When a snapshot of an object's state must be saved for later restoration.
+- When direct access to the object's fields would violate encapsulation.
+- For implementing undo/redo functionality.
+
+**When NOT to use it:**
+- When the state is large and expensive to store.
+- When the object state changes frequently.
+
+**Code Walkthrough:**
+- `Memento`: Class holding state.
+- `TextEditor`: Has text, save() returns Memento, restore() sets from Memento.
+- `History`: Stack of Mementos, push/pop.
+- `Demo`: Writes text, saves, writes more, undoes.
+
+**How to Run:** `java -cp behavioral/src/main/java com.example.behavioral.memento.Demo`
+
+**Interview Talking Points:**
+- Memento preserves encapsulation while allowing state snapshots.
+- Useful for undo mechanisms or checkpoints.
+- Caretaker manages mementos without accessing state.
+
+## State
+
+**Pattern Name and Intent:** Allows an object to alter its behavior when its internal state changes, appearing as if the object changed its class.
+
+**Real-world Analogy:** Like a traffic light - changes behavior (color) based on state.
+
+**When to USE this pattern:**
+- When an object's behavior depends on its state, and it must change its behavior at run-time depending on that state.
+- When operations have large, multipart conditional statements that depend on the object's state.
+- To avoid long switch statements or if-else chains.
+
+**When NOT to use it:**
+- When there are few states or simple transitions.
+- When state changes are rare.
+
+**Code Walkthrough:**
+- `State`: Interface with handle().
+- `TrafficLight`: Has state, change() delegates to state.
+- `RedState`, `YellowState`, `GreenState`: Implement handle(), set next state.
+- `Demo`: Changes traffic light multiple times.
+
+**How to Run:** `java -cp behavioral/src/main/java com.example.behavioral.state.Demo`
+
+**Interview Talking Points:**
+- State encapsulates state-specific behavior.
+- Useful for state machines or UI states.
+- Each state class handles transitions.
+
+## Visitor
+
+**Pattern Name and Intent:** Represents an operation to be performed on the elements of an object structure, allowing you to define a new operation without changing the classes of the elements on which it operates.
+
+**Real-world Analogy:** Like a tax inspector visiting businesses - performs operation on each without changing the businesses.
+
+**When to USE this pattern:**
+- When you have distinct and unrelated operations to perform on objects in a structure.
+- When the object structure rarely changes, but you often add new operations.
+- To avoid polluting classes with many operations.
+
+**When NOT to use it:**
+- When the element classes change frequently.
+- When operations are tightly coupled to element classes.
+
+**Code Walkthrough:**
+- `Visitor`: Interface with visit methods.
+- `Shape`: Interface with accept().
+- `Circle`, `Rectangle`: Implement Shape, accept(visitor) calls visitor.visit(this).
+- `AreaCalculator`: Implements Visitor, calculates area for each shape.
+- `Demo`: List of shapes, each accepts calculator.
+
+**How to Run:** `java -cp behavioral/src/main/java com.example.behavioral.visitor.Demo`
+
+**Interview Talking Points:**
+- Visitor adds operations to classes without modifying them.
+- Useful for compilers or object structures with varying operations.
+- Double dispatch: visitor and element determine behavior.
+
+## Interpreter
+
+**Pattern Name and Intent:** Given a language, defines a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
+
+**Real-world Analogy:** Like a calculator parsing expressions - interprets mathematical language.
+
+**When to USE this pattern:**
+- When you have a simple language to interpret.
+- When efficiency is not a primary concern.
+- For parsing and evaluating expressions.
+
+**When NOT to use it:**
+- When the grammar is complex or changes frequently.
+- When performance is critical (better use parser generators).
+
+**Code Walkthrough:**
+- `Expression`: Interface with interpret().
+- `NumberExpression`: Returns the number.
+- `AddExpression`, `SubtractExpression`: Interpret left and right, add/subtract.
+- `Demo`: Builds expression tree, interprets result.
+
+**How to Run:** `java -cp behavioral/src/main/java com.example.behavioral.interpreter.Demo`
+
+**Interview Talking Points:**
+- Interpreter parses and evaluates language grammars.
+- Useful for DSLs or expression evaluators.
+- Can be combined with Composite for expression trees.

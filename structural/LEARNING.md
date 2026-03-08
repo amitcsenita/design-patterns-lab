@@ -138,3 +138,61 @@
 - Composite treats individual and groups uniformly.
 - Useful for tree structures like menus or graphics.
 - Requires careful handling of operations on composites.
+
+## Bridge
+
+**Pattern Name and Intent:** Decouples an abstraction from its implementation so that the two can vary independently.
+
+**Real-world Analogy:** Like a TV remote and TV - the remote (abstraction) can control different TV brands (implementations).
+
+**When to USE this pattern:**
+- When you want to avoid a permanent binding between an abstraction and its implementation.
+- When both the abstractions and their implementations should be extensible by subclassing.
+- To share an implementation among multiple objects.
+
+**When NOT to use it:**
+- When there is only one implementation.
+- When changes in abstraction don't affect implementation.
+
+**Code Walkthrough:**
+- `DrawingAPI`: Interface for drawing operations.
+- `RasterDrawing`, `VectorDrawing`: Implement DrawingAPI.
+- `Shape`: Abstract class with DrawingAPI.
+- `Circle`, `Square`: Extend Shape, delegate drawing to API.
+- `Demo`: Creates shapes with different drawing APIs.
+
+**How to Run:** `java -cp structural/src/main/java com.example.structural.bridge.Demo`
+
+**Interview Talking Points:**
+- Bridge separates abstraction from implementation.
+- Allows both to evolve independently.
+- Useful for cross-platform development.
+
+## Flyweight
+
+**Pattern Name and Intent:** Uses sharing to support large numbers of fine-grained objects efficiently.
+
+**Real-world Analogy:** Like a word processor sharing font objects - many characters use the same font instance.
+
+**When to USE this pattern:**
+- When an application uses a large number of objects.
+- When storage costs are high because of the sheer quantity of objects.
+- When most object state can be made extrinsic.
+
+**When NOT to use it:**
+- When objects don't have intrinsic state to share.
+- When the number of objects is small.
+
+**Code Walkthrough:**
+- `TreeType`: Shared state (name, color, texture).
+- `TreeFactory`: Map to reuse TreeType instances.
+- `Tree`: Extrinsic state (x, y), references TreeType.
+- `Forest`: Plants trees, reuses types.
+- `Demo`: Plants multiple trees, some sharing types.
+
+**How to Run:** `java -cp structural/src/main/java com.example.structural.flyweight.Demo`
+
+**Interview Talking Points:**
+- Flyweight reduces memory usage by sharing common state.
+- Distinguishes intrinsic (shared) and extrinsic (unique) state.
+- Useful for games or text editors with many similar objects.
